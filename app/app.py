@@ -10,6 +10,7 @@ import pygame
 import sys
 
 
+# TODO: move to classes
 BLOCK_SIZE = 10
 SCORE_PER_FOOD = 250
 GROWTH_PER_FOOD = 2
