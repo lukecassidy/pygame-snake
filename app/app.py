@@ -198,6 +198,7 @@ def game_pause():
 
 
 def game_loop():
+    # TODO: rename, these are currently confusing 
     game_quit = False
     game_over = False
 
