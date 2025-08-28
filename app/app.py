@@ -71,7 +71,7 @@ class Game:
         )
         self.surface.blit(text_surface, text_rect)
 
-    def get_score(self) -> int:
+    def get_score(self):
         return self.score
 
     def reset(self):
@@ -114,7 +114,7 @@ class Snake:
                 surface, self.colour, [x, y, self.block_size, self.block_size]
             )
 
-    def check_boundaries(self) -> bool:
+    def check_boundaries(self):
         if self.head_x >= Game.screen_width:
             return True
         if self.head_x < 0:
@@ -125,7 +125,7 @@ class Snake:
             return True
         return False
 
-    def check_self_collision(self) -> bool:
+    def check_self_collision(self):
         # If the snake hits itself, game over
         for snake_point in self.snake_list[:-1]:
             if snake_point == self.snake_head:
