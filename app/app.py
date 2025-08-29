@@ -198,12 +198,11 @@ def game_pause():
 
 
 def game_loop():
-    # TODO: rename, these are currently confusing
-    game_quit = False
-    game_over = False
+    running = True
+    is_game_over = False
 
-    while not game_quit:
-        while game_over:
+    while running:
+        while is_game_over:
             game.surface.fill(COLORS.BLACK)
             game.message_to_screen("Game Over", COLORS.RED, font_size='large', y_change=-100)
             game.message_to_screen(
@@ -219,7 +218,7 @@ def game_loop():
                         game.reset()
                         snake.reset()
                         food.generate_food()
-                        game_over = False
+                        is_game_over = False
                 if event.type == pygame.QUIT:
                     game.exit()
 
@@ -228,7 +227,7 @@ def game_loop():
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                game_quit = True
+                running = False
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
@@ -256,7 +255,7 @@ def game_loop():
         snake.head_y += snake.y_change
 
         if snake.check_boundaries():
-            game_over = True
+            is_game_over = True
 
         game.surface.fill(COLORS.WHITE)
 
@@ -267,7 +266,7 @@ def game_loop():
         snake.remove_tail()
 
         if snake.check_self_collision():
-            game_over = True
+            is_game_over = True
 
         snake.draw_snake(game.surface)
 
