@@ -1,18 +1,16 @@
-# pygame-snake
-
+## pygame-snake
 
 A small, Snake game written with Pygame. 
+>TODO: add gif here + store in repo
 
-TODO: add gif here + store in repo
 ---
 
-Requirements
+### Requirements
 - Python 3.10+ (uses match/case)
 - Pygame 2.x
 
 ---
-Run it
-
+### Run it
 > Tip: use a virtualenv (OS/Linux)
 
 python -m venv .venv && source .venv/bin/activate
@@ -20,28 +18,30 @@ pip install pygame
 python app.py
 
 ---
-Controls
-↑ ↓ ← → — move
-P — pause/resume
-Enter — start / continue
-Esc — quit
+### Controls
+- ↑ ↓ ← → | move
+- P | pause/resume
+- Enter | start / continue
+- Esc | quit
 
 ---
 
-How it works
+### How it works
+#### Game loop:
+Handles events, updates snake position, checks collisions, draws frame at CONFIG.FPS.
 
-Game loop: handles events, updates snake position, checks collisions, draws frame at CONFIG.FPS.
+#### Snake:
+Keeps a list of body segments. Grows by CONFIG.GROWTH_PER_FOOD. Boundary or self collision -> game over.
 
-Snake: keeps a list of body segments. Grows by CONFIG.GROWTH_PER_FOOD. Boundary or self collision -> game over.
+#### Food:
+Spawns on random free grid cells.
 
-Food: spawns on random free grid cells.
-
-UI: minimal text rendering for title, prompts  and score.
+#### UI:
+Minimal text rendering for title, prompts  and score.
 
 ---
 
-Troubleshooting
-
+### Troubleshooting
 `ModuleNotFoundError: pygame:` run pip install pygame in the same environment you use to run the game.
 
 ---
