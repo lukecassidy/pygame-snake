@@ -4,18 +4,17 @@ A small, Snake game written with Pygame.
 >TODO: add gif here + store in repo
 
 ---
-
 ### Requirements
-- Python 3.10+ (uses match/case)
+- Python 3.10+
 - Pygame 2.x
 
 ---
 ### Run it
-> Tip: use a virtualenv (OS/Linux)
-
+```
 python -m venv .venv && source .venv/bin/activate
-pip install pygame
+pip install -r requirements.txt
 python app.py
+```
 
 ---
 ### Controls
@@ -38,11 +37,6 @@ Spawns on random free grid cells.
 
 #### UI:
 Minimal text rendering for title, prompts  and score.
-
----
-
-### Troubleshooting
-`ModuleNotFoundError: pygame:` run pip install pygame in the same environment you use to run the game.
 
 ---
 
