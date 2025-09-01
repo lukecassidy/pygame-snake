@@ -18,10 +18,13 @@ python app.py
 
 ---
 ### Controls
-- ↑ ↓ ← → | move
-- P | pause/resume
-- Enter | start / continue
-- Esc | quit
+
+| Key      | Action           |
+|----------|------------------|
+| ↑ ↓ ← →  | move             |
+| P        | pause/resume     |
+| Enter    | start / continue |
+| Esc      | quit             |
 
 ---
 
