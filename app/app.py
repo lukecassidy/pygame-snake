@@ -8,12 +8,13 @@ from enum import Enum
 import pygame
 import sys
 
-class COLORS:
+
+class COLOURS:
     WHITE = (255, 255, 255)
-    BLACK = (0, 0, 0)
-    RED   = (255, 0, 0)
-    GREEN = (0, 150, 0)
-    BLUE  = (0, 0, 255)
+    NAVY = (10, 0, 40)
+    PINK  = (255, 0, 128)
+    TEAL = (0, 255, 214)
+    BLUE  = (35, 0, 75)
 
 
 class CONFIG:
@@ -24,7 +25,7 @@ class CONFIG:
     SCREEN_WIDTH    = 600
     SCREEN_HEIGHT   = 400
     CAPTION         = "Snake"
-    SCORE_COLOUR    = COLORS.RED
+    SCORE_COLOUR    = COLOURS.WHITE
 
 
 class Direction(Enum):
@@ -51,7 +52,7 @@ class Game:
         self.font_large = pygame.font.SysFont(None, 40)
 
     def display_score(self):
-        message = f"score: {self.score}"
+        message = f"SCORE: {self.score}"
         text_surface = self.font_small.render(message, True, self.score_colour)
         text_rect = text_surface.get_rect()
         self.surface.blit(text_surface, text_rect)
@@ -85,7 +86,7 @@ class Game:
 
 
 class Snake:
-    colour = COLORS.GREEN
+    colour = COLOURS.TEAL
     block_size = CONFIG.BLOCK_SIZE
 
     def __init__(self):
@@ -138,7 +139,7 @@ class Snake:
 
 
 class Food:
-    colour = COLORS.RED
+    colour = COLOURS.PINK
     block_size = CONFIG.BLOCK_SIZE
 
     def __init__(self):
@@ -160,10 +161,10 @@ class Food:
 def game_intro():
     display_intro = True
     while display_intro:
-        game.surface.fill(COLORS.BLACK)
-        game.message_to_screen("Snake", COLORS.RED, font_size='large', y_change=-100)
-        game.message_to_screen("Press ENTER to Play", COLORS.WHITE, font_size='med', y_change=+20)
-        game.message_to_screen("Press ESC to Quit", COLORS.WHITE, font_size='med', y_change=+100)
+        game.surface.fill(COLOURS.NAVY)
+        game.message_to_screen("Snake", COLOURS.PINK, font_size='large', y_change=-100)
+        game.message_to_screen("Press ENTER to Play", COLOURS.WHITE, font_size='med', y_change=+20)
+        game.message_to_screen("Press ESC to Quit", COLOURS.WHITE, font_size='med', y_change=+100)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game.exit()
@@ -180,10 +181,10 @@ def game_intro():
 def game_pause():
     display_pause = True
     while display_pause:
-        game.surface.fill(COLORS.BLACK)
-        game.message_to_screen("Snake", COLORS.RED, font_size='large', y_change=-100)
-        game.message_to_screen("Press ENTER to Continue", COLORS.WHITE, font_size='med', y_change=+20)
-        game.message_to_screen("Press ESC to Quit", COLORS.WHITE, font_size='med', y_change=+100)
+        game.surface.fill(COLOURS.NAVY)
+        game.message_to_screen("Snake", COLOURS.PINK, font_size='large', y_change=-100)
+        game.message_to_screen("Press ENTER to Continue", COLOURS.WHITE, font_size='med', y_change=+20)
+        game.message_to_screen("Press ESC to Quit", COLOURS.WHITE, font_size='med', y_change=+100)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game.exit()
@@ -203,13 +204,13 @@ def game_loop():
 
     while running:
         while is_game_over:
-            game.surface.fill(COLORS.BLACK)
-            game.message_to_screen("Game Over", COLORS.RED, font_size='large', y_change=-100)
+            game.surface.fill(COLOURS.NAVY)
+            game.message_to_screen("Game Over", COLOURS.PINK, font_size='large', y_change=-100)
             game.message_to_screen(
-                f"Score {game.get_score()}", COLORS.RED, font_size='large', y_change=-40
+                f"Score {game.get_score()}", COLOURS.PINK, font_size='large', y_change=-40
             )
-            game.message_to_screen("Press ENTER to play", COLORS.WHITE, font_size='med', y_change=+60)
-            game.message_to_screen("Press ESC to Quit", COLORS.WHITE, font_size='med', y_change=+100)
+            game.message_to_screen("Press ENTER to play", COLOURS.WHITE, font_size='med', y_change=+60)
+            game.message_to_screen("Press ESC to Quit", COLOURS.WHITE, font_size='med', y_change=+100)
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
@@ -257,9 +258,9 @@ def game_loop():
         if snake.check_boundaries():
             is_game_over = True
 
-        game.surface.fill(COLORS.WHITE)
+        game.surface.fill(COLOURS.NAVY)
 
-        pygame.draw.rect(game.surface, COLORS.RED, [food.x, food.y, food.block_size, food.block_size])
+        pygame.draw.rect(game.surface, COLOURS.PINK, [food.x, food.y, food.block_size, food.block_size])
 
         snake.snake_list.append([snake.head_x, snake.head_y])
 
@@ -275,7 +276,7 @@ def game_loop():
         if head_rect.colliderect(food_rect):
             food.snake_body_list = snake.snake_list
             food.generate_food()
-            pygame.draw.rect(game.surface, COLORS.RED, [food.x, food.y, food.block_size, food.block_size])
+            pygame.draw.rect(game.surface, COLOURS.PINK, [food.x, food.y, food.block_size, food.block_size])
             snake.length += CONFIG.GROWTH_PER_FOOD
             game.score += CONFIG.SCORE_PER_FOOD
 
