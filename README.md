@@ -2,22 +2,16 @@
 
 A small, Snake game written with Pygame.
 
----
-
-![pygame-snake](https://github.com/user-attachments/assets/752b9311-f24d-412f-aa08-a41d373b2ba9)
-
----
-### Requirements
-- Python 3.10+
-- Pygame 2.x
-
----
 ### Run it
 ```
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 python app/app.py
 ```
+
+---
+
+![pygame-snake](https://github.com/user-attachments/assets/752b9311-f24d-412f-aa08-a41d373b2ba9)
 
 ---
 ### Controls
