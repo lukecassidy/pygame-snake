@@ -13,18 +13,18 @@ A small, Snake game written with Pygame.
 ```
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-python app.py
+python app/app.py
 ```
 
 ---
 ### Controls
 
-| Key      | Action           |
-|----------|------------------|
-| ↑ ↓ ← →  | move             |
-| P        | pause/resume     |
-| Enter    | start / continue |
-| Esc      | quit             |
+| Key     | Action           |
+| ------- | ---------------- |
+| ↑ ↓ ← → | move             |
+| P       | pause/resume     |
+| Enter   | start / continue |
+| Esc     | quit             |
 
 ---
 

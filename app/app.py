@@ -29,6 +29,7 @@ class CONFIG:
 
 
 class Direction(Enum):
+    """Movement directions for the snake."""
     NONE = 0
     LEFT = 1
     RIGHT = 2
@@ -37,6 +38,7 @@ class Direction(Enum):
 
 
 class Game:
+    """Handles rendering, UI text, timing and score."""
     caption = CONFIG.CAPTION
     fps = CONFIG.FPS
     screen_width = CONFIG.SCREEN_WIDTH
@@ -86,14 +88,14 @@ class Game:
 
 
 class Snake:
+    """The player-controlled snake."""
     colour = COLOURS.TEAL
     block_size = CONFIG.BLOCK_SIZE
 
     def __init__(self):
         self.snake_list = []
-        self.length = 1               # Increase when you eat food
-        self.speed = self.block_size  # Move by one grid cell
-        # Start centered on the grid
+        self.length = 1
+        self.speed = self.block_size
         self.head_x = (CONFIG.SCREEN_WIDTH // 2 // self.block_size) * self.block_size
         self.head_y = (CONFIG.SCREEN_HEIGHT // 2 // self.block_size) * self.block_size
         self.x_change = 0
@@ -101,6 +103,7 @@ class Snake:
         self.direction = Direction.NONE
 
     def reset(self):
+        """Reset snake to initial length, position and direction."""
         self.length = 1
         self.snake_list = []
         self.head_x = (CONFIG.SCREEN_WIDTH // 2 // self.block_size) * self.block_size
@@ -110,10 +113,12 @@ class Snake:
         self.direction = Direction.NONE
 
     def draw_snake(self, surface: pygame.Surface):
+        """Draw each snake block."""
         for x, y in self.snake_list:
             pygame.draw.rect(surface, self.colour, [x, y, self.block_size, self.block_size])
 
     def check_boundaries(self):
+        """Return True if the head is outside of our boundaries."""
         if self.head_x >= CONFIG.SCREEN_WIDTH:
             return True
         if self.head_x < 0:
@@ -125,7 +130,7 @@ class Snake:
         return False
 
     def check_self_collision(self):
-        # If the snake hits itself, game over
+        """Return True if the head collides with it's body."""
         head = [self.head_x, self.head_y]
         for snake_point in self.snake_list[:-1]:
             if snake_point == head:
@@ -133,12 +138,13 @@ class Snake:
         return False
 
     def remove_tail(self):
-        # Delete the oldest snake position
+        """Trim oldest blocks to maintain the current length."""
         if len(self.snake_list) > self.length:
             del self.snake_list[0]
 
 
 class Food:
+    """Food item that spawns on the grid."""
     colour = COLOURS.PINK
     block_size = CONFIG.BLOCK_SIZE
 
@@ -149,6 +155,7 @@ class Food:
         self.generate_food()
 
     def generate_food(self):
+        """Place food at a random grid cell not overlapping the snake."""
         while True:
             random_x = random.randrange(0, CONFIG.SCREEN_WIDTH, self.block_size)
             random_y = random.randrange(0, CONFIG.SCREEN_HEIGHT, self.block_size)
@@ -159,6 +166,7 @@ class Food:
 
 
 def game_intro():
+    """Show the intro screen."""
     display_intro = True
     while display_intro:
         game.surface.fill(COLOURS.NAVY)
@@ -179,6 +187,7 @@ def game_intro():
 
 
 def game_pause():
+    """Show the pause screen."""
     display_pause = True
     while display_pause:
         game.surface.fill(COLOURS.NAVY)
@@ -199,6 +208,7 @@ def game_pause():
 
 
 def game_loop():
+    """Our main game loop. Handles input, updating state and rendering."""
     running = True
     is_game_over = False
 
@@ -286,6 +296,7 @@ def game_loop():
 
 
 def main():
+    """Let's play!"""
     pygame.init()
     game_display = pygame.display.set_mode((CONFIG.SCREEN_WIDTH, CONFIG.SCREEN_HEIGHT))
     pygame.display.set_caption(CONFIG.CAPTION)
