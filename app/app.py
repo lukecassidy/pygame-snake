@@ -53,6 +53,13 @@ class Game:
         self.font_med = pygame.font.SysFont(None, 30)
         self.font_large = pygame.font.SysFont(None, 40)
 
+        # Create a grid overlay for some nice visuals
+        self.grid_surface = pygame.Surface((self.screen_width, self.screen_height), pygame.SRCALPHA)
+        for x in range(0, self.screen_width, CONFIG.BLOCK_SIZE):
+            pygame.draw.line(self.grid_surface, COLOURS.BLUE, (x, 0), (x, self.screen_height), 1)
+        for y in range(0, self.screen_height, CONFIG.BLOCK_SIZE):
+            pygame.draw.line(self.grid_surface, COLOURS.BLUE, (0, y), (self.screen_width, y), 1)
+
     def display_score(self):
         message = f"SCORE: {self.score}"
         text_surface = self.font_small.render(message, True, self.score_colour)
@@ -268,7 +275,9 @@ def game_loop():
         if snake.check_boundaries():
             is_game_over = True
 
+        # Background and grid overlay
         game.surface.fill(COLOURS.NAVY)
+        game.surface.blit(game.grid_surface, (0, 0))
 
         pygame.draw.rect(game.surface, COLOURS.PINK, [food.x, food.y, food.block_size, food.block_size])
 
