@@ -1,7 +1,8 @@
 ## pygame-snake
 
-A small, Snake game written with Pygame. 
->TODO: add gif here + store in repo
+A small, Snake game written with Pygame.
+
+![pygame-snake](https://github.com/user-attachments/assets/752b9311-f24d-412f-aa08-a41d373b2ba9)
 
 ---
 ### Requirements
